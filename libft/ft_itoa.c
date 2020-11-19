@@ -3,41 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkivipur <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: anikkane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/28 11:12:57 by mkivipur          #+#    #+#             */
-/*   Updated: 2019/10/31 10:22:37 by mkivipur         ###   ########.fr       */
+/*   Created: 2019/10/29 15:33:01 by anikkane          #+#    #+#             */
+/*   Updated: 2019/10/29 16:00:18 by anikkane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_nbs(unsigned int nb)
+static int	ft_intlen(unsigned int nb)
 {
 	size_t size;
 
-	size = 0;
+	size = 1;
 	while (nb >= 10)
 	{
 		nb = (nb / 10);
 		size++;
 	}
-	return (size + 1);
+	return (size);
 }
 
-char			*ft_itoa(int n)
+char		*ft_itoa(int n)
 {
-	char				*str1;
-	unsigned int		size;
-	unsigned int		i;
-	unsigned int		nb;
+	char			*str1;
+	unsigned int	size;
+	unsigned int	i;
+	unsigned int	nb;
 
 	if (n < 0)
 		nb = (unsigned int)(n * -1);
 	else
 		nb = (unsigned int)n;
-	size = (unsigned int)ft_nbs(nb);
-	if (!(str1 = (char *)malloc(sizeof(char) * size + 1 + (n < 0 ? 1 : 0))))
+	size = (unsigned int)ft_intlen(nb);
+	if (!(str1 = (char *)malloc(sizeof(char) * size + 1)))
 		return (NULL);
 	i = 0;
 	if (n < 0 && (str1[i] = '-'))

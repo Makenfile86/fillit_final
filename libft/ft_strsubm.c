@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strnegacpy.c                                       :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkivipur <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: anikkane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/20 10:38:56 by mkivipur          #+#    #+#             */
-/*   Updated: 2019/11/29 10:42:09 by mkivipur         ###   ########.fr       */
+/*   Created: 2019/10/29 13:58:12 by anikkane          #+#    #+#             */
+/*   Updated: 2019/11/20 10:35:40 by anikkane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	ft_strsubm(char *s2, char *s, unsigned int start, size_t len)
+char	*ft_strsubm(const char *s, unsigned int start, size_t len)
 {
+	char	*substr;
 	size_t	i;
 	size_t	j;
 
-	i = start;
-	j = 0;
-	while (j < len)
+	if (s)
 	{
-		s2[j] = s[i];
-		i++;
-		j++;
+		i = start;
+		j = 0;
+		while (j < len)
+		{
+			substr[j] = s[i];
+			i++;
+			j++;
+		}
+		substr[i] = '\0';
+		return (substr);
 	}
-	s2[i] = '\0';
-	return (*s2);
+	return (NULL);
 }

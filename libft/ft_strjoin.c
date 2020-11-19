@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkivipur <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: anikkane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/25 13:46:24 by mkivipur          #+#    #+#             */
-/*   Updated: 2019/10/25 14:04:47 by mkivipur         ###   ########.fr       */
+/*   Created: 2019/10/29 14:13:15 by anikkane          #+#    #+#             */
+/*   Updated: 2019/10/29 14:20:13 by anikkane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,25 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*s3;
+	char	*conca;
+	int		i;
 
-	s3 = NULL;
-	if (s1 && s2)
+	conca = ft_strnew(ft_strlen((char *)s1) + ft_strlen((char *)s2) + 1);
+	if (conca)
 	{
-		s3 = (char *)malloc(sizeof(char) * (ft_strlen((char *)s1)
-					+ ft_strlen((char *)s2) + 1));
-		if (!s3)
-			return (NULL);
-		ft_strcpy(s3, (char *)s1);
-		ft_strcat(s3, s2);
+		i = 0;
+		while (*s1)
+		{
+			conca[i++] = *s1;
+			s1++;
+		}
+		while (*s2)
+		{
+			conca[i++] = *s2;
+			s2++;
+		}
+		conca[i] = '\0';
+		return (conca);
 	}
-	return (s3);
+	return (NULL);
 }

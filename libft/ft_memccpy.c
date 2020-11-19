@@ -3,29 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkivipur <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: anikkane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/22 15:26:12 by mkivipur          #+#    #+#             */
-/*   Updated: 2019/10/24 13:21:51 by mkivipur         ###   ########.fr       */
+/*   Created: 2019/10/23 13:49:59 by anikkane          #+#    #+#             */
+/*   Updated: 2019/10/30 09:37:18 by anikkane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t len)
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	unsigned char		*dst1;
-	unsigned char		*src1;
-	size_t				i;
+	size_t			i;
+	unsigned char	*orig_src;
+	unsigned char	*new_dst;
+	unsigned char	chara;
 
 	i = 0;
-	dst1 = (unsigned char *)dst;
-	src1 = (unsigned char *)src;
-	while (i < len)
+	new_dst = (unsigned char *)dst;
+	orig_src = (unsigned char *)src;
+	chara = (unsigned char)c;
+	while (i < n)
 	{
-		dst1[i] = src1[i];
-		if (dst1[i] == (unsigned char)c)
-			return ((void*)(dst + i + 1));
+		*new_dst = orig_src[i];
+		new_dst++;
+		if (chara == orig_src[i])
+		{
+			return (new_dst);
+		}
 		i++;
 	}
 	return (NULL);

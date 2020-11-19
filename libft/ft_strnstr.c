@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   strnstr.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkivipur <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: anikkane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/22 13:51:01 by mkivipur          #+#    #+#             */
-/*   Updated: 2019/10/30 08:18:05 by mkivipur         ###   ########.fr       */
+/*   Created: 2019/10/22 13:00:50 by anikkane          #+#    #+#             */
+/*   Updated: 2019/11/07 11:38:30 by anikkane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *s, const char *to_find, size_t len)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	size_t pos;
-	size_t i;
+	char	*phaystack;
+	size_t	letters_left;
+	size_t	needle_len;
+	size_t	i;
 
-	if (!*to_find)
-		return ((char*)s);
-	pos = 0;
-	while (s[pos] != '\0' && (size_t)pos < len)
+	phaystack = (char *)haystack;
+	if (needle[0] == '\0')
+		return (phaystack);
+	i = 0;
+	letters_left = len;
+	needle_len = (size_t)ft_strlen((char *)needle);
+	while (*phaystack && letters_left >= needle_len)
 	{
-		if (s[pos] == to_find[0])
-		{
-			i = 1;
-			while (to_find[i] != '\0' && s[pos + i] == to_find[i] &&
-					(size_t)(pos + i) < len)
-				++i;
-			if (to_find[i] == '\0')
-				return ((char*)&s[pos]);
-		}
-		++pos;
+		if (ft_strncmp(needle, phaystack, needle_len) == 0)
+			return (phaystack);
+		i++;
+		letters_left--;
+		phaystack++;
 	}
-	return (0);
+	return (NULL);
 }

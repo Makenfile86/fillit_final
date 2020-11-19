@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkivipur <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: anikkane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/25 14:15:19 by mkivipur          #+#    #+#             */
-/*   Updated: 2019/10/25 15:19:10 by mkivipur         ###   ########.fr       */
+/*   Created: 2019/10/29 14:24:43 by anikkane          #+#    #+#             */
+/*   Updated: 2019/10/29 16:01:45 by anikkane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 char	*ft_strtrim(char const *s)
 {
-	size_t	min;
-	size_t	max;
-	size_t	len;
+	size_t min;
+	size_t max;
+	size_t len;
 
 	if (!s)
 		return (NULL);
 	min = 0;
-	while (s[min] != '\0' && (s[min] == ' ' ||
-				s[min] == '\n' || s[min] == '\t'))
+	while (s[min] != '\0' && (s[min] == ' ' || s[min] == '\n'
+				|| s[min] == '\t'))
 		min++;
 	max = ft_strlen((char *)s);
-	while (min < max && (s[max - 1] == ' ' ||
-				s[max - 1] == '\n' || s[max - 1] == '\t'))
+	while (min < max && (s[max - 1] == ' ' || s[max - 1] == '\n'
+				|| s[max - 1] == '\t'))
 		max--;
 	if (min == max)
 		return (ft_strnew(1));

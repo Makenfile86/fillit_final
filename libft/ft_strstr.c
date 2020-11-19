@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   strstr.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkivipur <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: anikkane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/19 17:14:03 by mkivipur          #+#    #+#             */
-/*   Updated: 2019/10/30 08:08:52 by mkivipur         ###   ########.fr       */
+/*   Created: 2019/10/22 15:06:14 by anikkane          #+#    #+#             */
+/*   Updated: 2019/10/24 12:12:07 by anikkane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strstr(const char *s, const char *to_find)
+char	*ft_strstr(const char *s1, const char *s2)
 {
-	char		*haystack;
-	size_t		to_find_len;
+	size_t	len;
 
-	haystack = (char *)s;
-	to_find_len = ft_strlen(to_find);
-	if (to_find_len == 0)
+	if (*s2 == '\0')
+		return ((char *)s1);
+	len = ft_strlen((char *)s2);
+	while (*s1)
 	{
-		return (haystack);
-	}
-	while (*haystack)
-	{
-		if (*haystack == *to_find)
-		{
-			if (ft_strncmp(to_find, haystack, to_find_len) == 0)
-			{
-				return (haystack);
-			}
-		}
-		haystack++;
+		if (!ft_strncmp(s1, s2, len))
+			return ((char *)s1);
+		s1++;
 	}
 	return (NULL);
 }

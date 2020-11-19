@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   isalnum.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkivipur <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: anikkane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/22 09:50:32 by mkivipur          #+#    #+#             */
-/*   Updated: 2019/10/25 15:45:09 by mkivipur         ###   ########.fr       */
+/*   Created: 2019/10/21 13:10:05 by anikkane          #+#    #+#             */
+/*   Updated: 2019/10/24 12:03:03 by anikkane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isalnum(int c)
+int	ft_isalnum(int c)
 {
-	if (ft_isalpha(c) == 1)
-		return (1);
-	if (ft_isdigit(c) == 1)
+	if (ft_isalpha(c) || ft_isdigit(c))
 		return (1);
 	return (0);
 }
