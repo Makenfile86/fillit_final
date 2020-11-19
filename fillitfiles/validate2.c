@@ -6,7 +6,7 @@
 /*   By: mkivipur <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 10:21:48 by mkivipur          #+#    #+#             */
-/*   Updated: 2020/01/10 11:34:06 by mkivipur         ###   ########.fr       */
+/*   Updated: 2020/01/14 14:23:32 by mkivipur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		hash_check(char *nnstring)
 	i = 0;
 	count = 0;
 	len = ft_strlen(nnstring);
-	while (i <= len)
+	while (i < len)
 	{
 		if (nnstring[i] == '#')
 			count++;
@@ -36,22 +36,29 @@ int		hash_check(char *nnstring)
 	return (1);
 }
 
-char	*cut_pieces(char *tmp2)
+int		find_hashtag(char *nnstring, int which)
 {
-	char *tmp;
+	int i;
+	int count;
 
-	tmp = ft_strsub(tmp2, 21, ft_strlen(tmp2));
-	ft_strcpy(tmp2, tmp);
-	free(tmp);
-	return (tmp2);
+	count = 0;
+	i = 0;
+	while (count < which && nnstring[i] != '\0')
+	{
+		if (nnstring[i] == '#')
+			count++;
+		i++;
+	}
+	return (i - 1);
 }
 
-char	*cut_pieces2(char *tmp2)
+int		end_tet2(char *nnstring, int end, int count)
 {
-	char *tmp;
-
-	tmp = ft_strsub(tmp2, 16, ft_strlen(tmp2));
-	ft_strcpy(tmp2, tmp);
-	free(tmp);
-	return (tmp2);
+	while (count < 4 && nnstring[end] != '\0')
+	{
+		if (nnstring[end] == '#')
+			count++;
+		end++;
+	}
+	return (end);
 }

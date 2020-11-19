@@ -6,7 +6,7 @@
 /*   By: mkivipur <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 11:50:21 by mkivipur          #+#    #+#             */
-/*   Updated: 2020/01/10 11:40:05 by mkivipur         ###   ########.fr       */
+/*   Updated: 2020/01/14 14:22:09 by mkivipur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,23 @@ char	*create_nnstring(char *buff)
 	int		i;
 	int		y;
 	char	*nnstring;
+	int		len;
 
 	if (!(nnstring = ft_strnew(ft_strlen(buff))))
 		return (0);
 	i = 0;
 	y = 0;
-	while (buff[i] != '\0')
+	len = ft_strlen(buff);
+	while (i < len)
 	{
-		while (buff[i] == '\n')
+		if (buff[i] != '\n')
+		{
+			nnstring[y] = buff[i];
+			y++;
 			i++;
-		nnstring[y] = buff[i];
-		y++;
-		i++;
+		}
+		else
+			i++;
 	}
 	nnstring[y] = '\0';
 	return (nnstring);
@@ -64,24 +69,26 @@ int		check_nnstring(char *nnstring)
 
 int		valid_tetri2(int i, int count, int hcount, char *nnstring)
 {
+	int tetri_count;
+	int scale;
+
+	scale = 0;
+	tetri_count = 0;
 	while (nnstring[i] != '\0')
 	{
 		if (nnstring[i] == '#')
 		{
 			hcount++;
-			count = neighbour_count(nnstring, count, hcount, i);
-		}
-		if (hcount == 4)
-		{
-			if (count == 6 || count == 8)
+			scale = (i - (tetri_count * 16));
+			count = neighbour_count(nnstring, count, hcount, scale);
+			if (hcount % 4 == 0)
 			{
-				count = 0;
-				hcount = 0;
+				tetri_count++;
+				if (count == 6 || count == 8)
+					count = 0;
+				else
+					return (0);
 			}
-			else
-				return (0);
-			nnstring = cut_pieces2(nnstring);
-			i = -1;
 		}
 		i++;
 	}
@@ -98,27 +105,31 @@ int		valid_tetri(char *nnstring)
 	i = 0;
 	count = 0;
 	if (!(hash_check(nnstring)))
+	{
 		return (0);
+	}
 	if (!(valid_tetri2(i, count, hcount, nnstring)))
+	{
 		return (0);
+	}
 	free(nnstring);
 	return (1);
 }
 
-int		neighbour_count(char *nnstring, int count, int hcount, int i)
+int		neighbour_count(char *nnstring, int count, int hcount, int y)
 {
-	int len;
+	int i;
 
-	len = ft_strlen(nnstring);
-	if ((i + 1) <= len && (nnstring[i + 1] == '#'
-				&& hcount != 4 && i != 3 && i != 7 && i != 11))
+	i = find_hashtag(nnstring, hcount);
+	if ((y + 1) < 16 && (nnstring[i + 1] == '#'
+				&& hcount != 4 && y != 3 && y != 7 && y != 11))
 		count++;
-	if (i != 0 && nnstring[i - 1] == '#'
-			&& hcount != 0 && i != 4 && i != 8 && i != 12)
+	if (y != 0 && nnstring[i - 1] == '#'
+			&& hcount != 0 && y != 4 && y != 8 && y != 12)
 		count++;
-	if ((i + 4) <= len && (nnstring[i + 4] == '#' && hcount != 4 && i < 12))
+	if ((y + 4) < 16 && (nnstring[i + 4] == '#' && hcount != 4 && y < 12))
 		count++;
-	if (i > 3 && nnstring[i - 4] == '#')
+	if (y > 3 && nnstring[i - 4] == '#')
 		count++;
 	return (count);
 }

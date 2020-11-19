@@ -6,22 +6,36 @@
 /*   By: mkivipur <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 13:47:45 by mkivipur          #+#    #+#             */
-/*   Updated: 2020/01/06 11:07:36 by anikkane         ###   ########.fr       */
+/*   Updated: 2020/01/14 14:13:27 by mkivipur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	*make_tetriminos(char *tetriminos, char *nnstring2, int start, int end)
+char	*make_tetriminos(char *tetriminos, char *nnstring2, int i)
 {
-	int		len;
-	char	*tetriminos2;
+	int count;
+	int y;
 
-	len = (end - start);
-	if (!(tetriminos2 = ft_strsub(nnstring2, start, len + 1)))
-		return (0);
-	tetriminos = check_tetriminos(tetriminos2, len);
-	free(tetriminos2);
+	y = 0;
+	count = 0;
+	while (nnstring2[i] != '\0')
+	{
+		if (nnstring2[i] == '#')
+		{
+			while (count < 4)
+			{
+				tetriminos[y] = nnstring2[i];
+				if (nnstring2[i] == '#')
+					count++;
+				y++;
+				i++;
+			}
+		}
+		i++;
+	}
+	tetriminos[y] = '\0';
+	tetriminos = check_tetriminos(tetriminos, ft_strlen(tetriminos));
 	return (tetriminos);
 }
 

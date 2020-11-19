@@ -6,7 +6,7 @@
 /*   By: mkivipur <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 10:12:08 by mkivipur          #+#    #+#             */
-/*   Updated: 2020/01/10 12:03:39 by mkivipur         ###   ########.fr       */
+/*   Updated: 2020/01/14 15:14:24 by mkivipur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int		new_line_check(char *buff)
 	count = 0;
 	if (ft_strlen(buff) == 20 && (charcount(buff, '\n') == 4))
 	{
-		if (!(one_tetri_check(buff)))
+		if (!(one_tetri_check(buff, 4)))
 			return (0);
 		return (1);
 	}
@@ -78,34 +78,4 @@ int		charcount(char *buff, char c)
 		i++;
 	}
 	return (charcount);
-}
-
-int		start_tet(char *nnstring)
-{
-	int start;
-
-	start = 0;
-	while (nnstring[start] != '\0')
-	{
-		if (nnstring[start] == '#')
-			return (start);
-		start++;
-	}
-	return (start);
-}
-
-int		end_tet(char *nnstring)
-{
-	int count;
-	int end;
-
-	count = 0;
-	end = 0;
-	while (count < 4 && nnstring[end] != '\0')
-	{
-		if (nnstring[end] == '#')
-			count++;
-		end++;
-	}
-	return (end - 1);
 }
