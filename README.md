@@ -8,7 +8,8 @@ The map is a square and the piece is in a 4x4 square in the form of a standard t
 if you can manage the same smallest square in a multible ways you have to fill it where the earlier pieces are put in first. 
 You also have to start from the left corner.
 
-Example of the pieces you have to manage in a format that the program reads them:
+Example of the pieces you have to manage in a format that the program reads them:                                                                                          
+
 ![pieces:](https://github.com/Makenfile86/fillit_final/blob/master/pieces2.jpg?raw=true)
 
 
