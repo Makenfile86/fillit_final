@@ -9,10 +9,11 @@ if you can manage the same smallest square in a multible ways you have to fill i
 You also have to start from the left corner.
 
 Example of the pieces you have to manage in a format that the program reads them:
-
+![pieces:](https://github.com/Makenfile86/fillit_final/blob/master/pieces2.jpg?raw=true)
 
 
 As you can see the first piece was labeled with the letter A and second piece with a letter B and so on.
 
 ![Results:](https://github.com/Makenfile86/fillit_final/blob/master/result.jpg?raw=true)
+
 //
